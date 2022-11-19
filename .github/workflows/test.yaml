@@ -1,0 +1,34 @@
+name: Test APP
+
+on: push
+
+env:
+  NODE_VERSION: 16.17.1
+  IP_ADDRESS: "49.12.188.8"
+
+jobs:
+  test-application:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0.30
+        ports:
+          - "3306:3306"
+        env:
+          MYSQL_ROOT_PASSWORD: pw
+          MYSQL_DATABASE: fullstackjack
+          MYSQL_USER: jack
+          MYSQL_PASSWORD: 12345678
+    env: 
+      DATABASE_URL: mysql://root:pw@localhost:3306/fullstackjack
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test Application
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{env.NODE_VERSION}}
+          cache: 'yarn'
+      - run: | 
+         yarn
+         yarn build
+         yarn ci:test
