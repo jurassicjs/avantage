@@ -12,7 +12,7 @@ import TheBillboard from "~~/components/elements/TheBillboard.vue";
         </div>
       </div>
     </div>
-    <div class="flex justify-center bg-gray-900 bg-gray-200">
+    <div class="flex justify-center dark:bg-gray-900 bg-gray-200">
       <TheFeatureGrid />
     </div>
   </div>
