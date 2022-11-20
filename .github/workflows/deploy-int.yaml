@@ -116,7 +116,7 @@ jobs:
           script: |
             mkdir -p "/var/www/html/avantage/releases/${GITHUB_SHA}"
             tar xzf /var/www/html/avantage/artifacts/${GITHUB_SHA}.tar.gz -C "/var/www/html/avantage/releases/${GITHUB_SHA}"
-            tar xzf /var/www/html/avantage/artifacts/${GITHUB_SHA}-database.tar.gz -C "/var/www/html"
+            tar xzf /var/www/html/avantage/artifacts/${GITHUB_SHA}-database.tar.gz -C "/var/www/html/avantage"
             rm -rf /var/www/html/avantage/artifacts/${GITHUB_SHA}.tar.gz
 
   activate-release:
