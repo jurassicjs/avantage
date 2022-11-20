@@ -19,11 +19,11 @@ jobs:
           - "3306:3306"
         env:
           MYSQL_ROOT_PASSWORD: pw
-          MYSQL_DATABASE: fullstackjack
+          MYSQL_DATABASE: avantage
           MYSQL_USER: jack
           MYSQL_PASSWORD: 12345678
     env: 
-      DATABASE_URL: mysql://root:pw@localhost:3306/fullstackjack
+      DATABASE_URL: mysql://root:pw@localhost:3306/avantage
     steps:
       - uses: actions/checkout@v3
       - name: Test Application
@@ -50,9 +50,10 @@ jobs:
           touch .env
           echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_TEST_KEY }} >> .env
           echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
-          echo APP_DOMAIN=https://fullstackjack.dev >> .env
+          echo APP_DOMAIN=https://avantage.fullstackjack.dev >> .env
           echo RELEASE_VERSION=${GITHUB_REF} >> .env
           echo GITHUB_SHA=${{ github.sha }} >> .env
+          echo PORT=3001 >> .env
           yarn
           yarn build
           cp .env .output/server/.env
@@ -90,7 +91,7 @@ jobs:
           username: "root"
           key: ${{ secrets.SSH_KEY }}
           source: ${{ github.sha }}.tar.gz
-          target: /var/www/html/artifacts
+          target: /var/www/html/avantage/artifacts
 
       - name: Upload database-artifacts
         uses: appleboy/scp-action@master
@@ -100,7 +101,7 @@ jobs:
           username: "root"
           key: ${{ secrets.SSH_KEY }}
           source:  ${{ github.sha }}-database.tar.gz
-          target: /var/www/html/artifacts
+          target: /var/www/html/avantage/artifacts
 
       - name: Extract archive and create directories
         uses: appleboy/ssh-action@master
@@ -113,10 +114,10 @@ jobs:
           port: "22"
           envs: GITHUB_SHA
           script: |
-            mkdir -p "/var/www/html/releases/${GITHUB_SHA}"
-            tar xzf /var/www/html/artifacts/${GITHUB_SHA}.tar.gz -C "/var/www/html/releases/${GITHUB_SHA}"
-            tar xzf /var/www/html/artifacts/${GITHUB_SHA}-database.tar.gz -C "/var/www/html"
-            rm -rf /var/www/html/artifacts/${GITHUB_SHA}.tar.gz
+            mkdir -p "/var/www/html/avantage/releases/${GITHUB_SHA}"
+            tar xzf /var/www/html/avantage/artifacts/${GITHUB_SHA}.tar.gz -C "/var/www/html/avantage/releases/${GITHUB_SHA}"
+            tar xzf /var/www/html/avantage/artifacts/${GITHUB_SHA}-database.tar.gz -C "/var/www/html"
+            rm -rf /var/www/html/avantage/artifacts/${GITHUB_SHA}.tar.gz
 
   activate-release:
     name: "Activate release"
@@ -126,8 +127,8 @@ jobs:
       - name: Activate Release
         uses: appleboy/ssh-action@master
         env:
-          RELEASE_PATH: /var/www/html/releases/${{ github.sha }}
-          ACTIVE_RELEASE_PATH: /var/www/html/live
+          RELEASE_PATH: /var/www/html/avantage/releases/${{ github.sha }}
+          ACTIVE_RELEASE_PATH: /var/www/html/avantage/live
         with:
           host: ${{env.IP_ADDRESS}}
           username: "root"
@@ -136,10 +137,10 @@ jobs:
           envs: RELEASE_PATH,ACTIVE_RELEASE_PATH
           script: |
             ln -s -n -f $RELEASE_PATH $ACTIVE_RELEASE_PATH
-            systemctl restart fullstackjack
+            systemctl restart avantage
             chown -R www-data:www-data ${RELEASE_PATH}
-            chown -R root:root  /var/www/html/database
-            cd /var/www/html/database && npx prisma migrate deploy
+            chown -R root:root  /var/www/html/avantage/database
+            cd /var/www/html/avantage/database && npx prisma migrate deploy
 
   clean-up:
     name: "Clean up old versions"
@@ -154,8 +155,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: "22"
           script: |
-            cd /var/www/html/releases && ls -t -1 | tail -n +4 | xargs rm -rf
-            cd /var/www/html/artifacts && rm -rf *
+            cd /var/www/html/avantage/releases && ls -t -1 | tail -n +4 | xargs rm -rf
+            cd /var/www/html/avantage/artifacts && rm -rf *
       - uses: geekyeggo/delete-artifact@v1
         with:
           name: app-artifacts
