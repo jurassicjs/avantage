@@ -58,7 +58,7 @@ export async function registerWithEmail(
 
     if (data) {
       useState('user').value = data
-      await useRouter().push('/topics')
+      await useRouter().push('/dashboard')
     }
 
     return { hasErrors: false, loggedIn: true }
@@ -75,7 +75,7 @@ export async function loginWithEmail(usernameOrEmail: string, password: string):
       throw Error('something went wrong')
     }
     useState('user').value = result
-    await useRouter().push('/topics')
+    await useRouter().push('/dashboard')
 
     return { hasErrors: false, loggedIn: true }
   } catch (error: any) {
