@@ -1,5 +1,13 @@
-# avantage 
-> Nuxt 3 + a head start
+![avantage](https://user-images.githubusercontent.com/45824492/202878741-3fdbb781-1944-461f-81a4-58cdd834df4e.png)
+
+avantage seeks to accelerate building fullstack node applications with Nuxt 3. 
+
+Features:
+- Auth
+- Tailwind CSS
+- Stripe Checkout Integration
+- Prisma Js (database ORM)
+- what feature do you think belong? open a discussion
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
