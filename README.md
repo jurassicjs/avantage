@@ -12,7 +12,7 @@ Features:
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
 ## Demo App
-Check out [FullStackJack.dev](https://fullstackjack.dev) to see this code live in action.
+Check out [avantage.fullStackJack.dev](https://avantage.fullstackjack.dev) to see this code live in action.
 
 ## Setup
 
