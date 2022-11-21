@@ -9,7 +9,7 @@ import  FlameLogo  from "~~/components/elements/Logos/FlameLogo.vue";
         <slot name="whiteWord">Nuxt</slot>
         <span
           class="bg-clip-text ml-3 text-transparent bg-gradient-to-r hover:from-[#e36a00] to-teal-400 from-[#00dc82] hover:to-[#00dc82]">
-          <slot name="colorFullWord">Avatage</slot>
+          <slot name="colorFullWord">Avantage</slot>
         </span>
       </span>
     </div>
