@@ -37,7 +37,7 @@ watch(user, async () => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex justify-between  border-b-2 border-gray-100">
         <div class="flex justify-between min-w-full md:min-w-0">
-          <div class="md:hidden mt-4 bg-black">
+          <div class="md:hidden mt-4 dark:bg-black">
             <button @click="showSideDrawer = true" type="button"
               class="bg-white rounded-md p-2 inline-flex  text-gray-400 hover:text-gray-500 dark:bg-black dark:text-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               aria-expanded="false">
