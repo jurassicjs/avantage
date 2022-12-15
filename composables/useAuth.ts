@@ -58,7 +58,31 @@ export async function registerWithEmail(
 
     if (data) {
       useState('user').value = data
-      await useRouter().push('/dashboard')
+      await useRouter().push('/verify')
+    }
+
+    return { hasErrors: false, loggedIn: true }
+  } catch (error: any) {
+    return useErrorMapper(error.data.data)
+  }
+}
+
+export async function updateUser(
+  username: string,
+  name: string,
+  email: string,
+  password: string
+): Promise<FormValidation> {
+
+  try {
+    const data = await $fetch<ISession>('/api/auth/update', {
+      method: 'POST',
+      body:  { username, name, email, password }
+    })
+
+    if (data) {
+      useState('user').value = data
+      await useRouter().push('/account')
     }
 
     return { hasErrors: false, loggedIn: true }

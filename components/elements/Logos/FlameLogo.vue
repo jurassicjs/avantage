@@ -27,7 +27,7 @@ defineProps({
         <path d="M 162.472656 124 L 360 124 L 360 253 L 162.472656 253 Z M 162.472656 124 " clip-rule="nonzero" />
       </clipPath>
     </defs>
-    <rect x="-37.5" width="450" fill="currentColor" y="-37.499999" height="449.999989" fill-opacity="1" />
+    <rect  x="-37.5" width="450" fill="currentColor" y="-37.499999" height="449.999989" fill-opacity="1" />
     <rect x="-37.5" width="450" fill="currentColor" y="-37.499999" height="449.999989" fill-opacity="1" />
     <rect x="-37.5" width="450" fill="currentColor" y="-37.499999" height="449.999989" fill-opacity="1" />
     <g clip-path="url(#40bf54d1b7)">

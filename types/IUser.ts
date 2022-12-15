@@ -12,5 +12,12 @@ export interface IUser {
   stripeCustomerId?: string | null
 }
 
+export interface IUserSanitized {
+  id: number
+  username: string
+  name: string
+  email: string
+}
+
 
 

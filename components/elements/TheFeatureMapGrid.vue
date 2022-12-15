@@ -7,7 +7,7 @@ import  ColorModeLogo  from "~~/components/elements/Logos/colorMode.vue";
     <div class="mt-10">
       <div class="mb-10 text-center gap-10">
         <h2 class="text-base text-[#00dc82] font-semibold tracking-wide uppercase"><span
-            class="text-black dark:text-white">Advantages of</span> Avatage</h2>
+            class="text-black dark:text-white">Advantages of</span> Avantage</h2>
       </div>
 
       <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-20">

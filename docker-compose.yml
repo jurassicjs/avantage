@@ -15,6 +15,14 @@ services:
       networks:
         - default
 
+  mailhog:
+    container_name: mailhog_avantage
+    image: mailhog/mailhog
+    restart: always
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
 volumes:
   database:
     driver: local

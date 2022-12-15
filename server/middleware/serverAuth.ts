@@ -15,6 +15,7 @@ async function protectAuthRoute(event: H3Event): Promise<boolean> {
     const protectedRoutes = [
         '/api/dasboard',
         '/api/members-only',
+        '/api/auth/verifyOtp'
     ]
 
     if (!event?.path || !protectedRoutes.includes(event.path)) {

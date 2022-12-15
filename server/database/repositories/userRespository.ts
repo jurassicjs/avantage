@@ -40,6 +40,20 @@ export async function createUser(data: IUser) {
 
   return user
 }
+export async function updateUser(data: IUser) {
+  const user = await prisma.user.update({
+    where: {
+      id: data.id 
+    },
+    data: {
+      username: data.username,
+      name: data.name,
+      email: data.email
+    },
+  })
+
+  return user
+}
 
 export async function getUserById(id: number) {
   return await prisma.user.findUnique({
@@ -112,4 +126,17 @@ export async function createOrUpdateSubscription(data: ISubscription) {
       startDate: data.startDate
     }
   })
+}
+
+export async function updateIsEmailVerified(userId: number, isVerified: boolean) {
+  const user = await prisma.user.update({
+    where: {
+      id: userId
+    },
+    data: {
+      isEmailVerified: isVerified,
+    }
+  })
+
+  return user
 }

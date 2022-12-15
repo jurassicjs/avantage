@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 import { readBody } from "h3";
 
 const config = useRuntimeConfig()
-const stripe = new Stripe(config.private.stripeSecretKey, null);
+const stripe = new Stripe(config.stripeSecretKey, null);
 
 export default eventHandler(async (event) => {
     const body = await readBody(event)

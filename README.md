@@ -3,10 +3,11 @@
 avantage seeks to accelerate building fullstack node applications with Nuxt 3. 
 
 Features:
-- Auth
+- Auth (Can now send OTP via nuxt-mailer)
 - Tailwind CSS
 - Stripe Checkout Integration
 - Prisma Js (database ORM)
+- Nuxt-Mailer (node mailer integration)
 - what feature do you think belong? open a discussion
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.

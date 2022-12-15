@@ -2,12 +2,12 @@ import { getUserByEmail, getUserByUserName } from "~/server/database/repositorie
 import { RegistationRequest } from "~/types/IRegistration"
 
 
-export async function validate(data: RegistationRequest) {
+export async function validate(data: RegistationRequest, validationCallback: { (key: string, value: string): Promise<InputValidation>}) {
 
     const errors = new Map<string, { message: string | undefined }>()
 
     for (const [key, value] of Object.entries(data)) {
-        let val = await validateRegistration(key, value)
+        let val = await validationCallback(key, value)
 
         if (val.hasError) {
             errors.set(key, { 'message': val.errorMessage })
@@ -17,7 +17,7 @@ export async function validate(data: RegistationRequest) {
     return errors
 }
 
-async function validateRegistration(key: string, value: string): Promise<InputValidation> {
+export async function validateRegistration(key: string, value: string): Promise<InputValidation> {
     const check: InputValidation = {
         value,
         isBlank: false,

@@ -33,16 +33,16 @@ watch(user, async () => {
 </script>
 
 <template>
-  <div class="navbar relative dark:bg-black">
+  <div class="navbar relative ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex justify-between  border-b-2 border-gray-100">
         <div class="flex justify-between min-w-full md:min-w-0">
-          <div class="md:hidden mt-4 dark:bg-black">
+          <div class="md:hidden mt-4 ">
             <button @click="showSideDrawer = true" type="button"
-              class="bg-white rounded-md p-2 inline-flex  text-gray-400 hover:text-gray-500 dark:bg-black dark:text-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              class=" rounded-md p-2 inline-flex  text-gray-400 hover:text-gray-500 dark:text-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               aria-expanded="false">
-              <span class="sr-only dark:bg-black">Open menu</span>
-              <svg class="h-6 w-6 dark:bg-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              <span class="sr-only ">Open menu</span>
+              <svg class="h-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
@@ -51,7 +51,7 @@ watch(user, async () => {
           <div class="">
             <nuxt-link to="/">
               <span class="sr-only">Home</span>
-              <FlameLogoBig svgClasses="h-16 md:h-24 w-auto transition duration-500 scale-110  bg-black dark:text-black text-white"/>
+              <FlameLogoBig svgClasses="h-16 md:h-24 w-auto transition duration-500 scale-110 dark:text-black text-white"/>
             </nuxt-link>
           </div>
         </div>
@@ -141,7 +141,7 @@ watch(user, async () => {
 
     <!-- drawer component -->
     <div id="drawer-navigation my-12" :class="{ hidden: !showSideDrawer }"
-      class="fixed z-40 top-0 h-screen  transition-all duration-700   p-4 overflow-y-auto bg-white w-80 dark:bg-black"
+      class="fixed z-40 top-0 h-screen  transition-all duration-700   p-4 overflow-y-auto  w-80 "
       tabindex="-1" aria-labelledby="drawer-navigation-label">
       <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 dark:text-gray-200 uppercase hover:dark:text-green-400 hover:text-green-400">Menu
       </h5>

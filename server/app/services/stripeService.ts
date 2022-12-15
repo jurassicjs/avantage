@@ -5,7 +5,7 @@ import Stripe from 'stripe';
 import { ISubscription } from '~~/types/ISubscription';
 
 const config = useRuntimeConfig()
-const stripe = new Stripe(config.private.stripeSecretKey, null);
+const stripe = new Stripe(config.stripeSecretKey, null);
 
 export async function getSubscribeUrl(lookupKey: string, user: IUser): Promise<SubPostRes> {
  

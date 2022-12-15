@@ -3,7 +3,7 @@ name: Automated Release Deployment
 on:
   push:
     tags:
-      - rc*
+      - v*
 
 env:
   NODE_VERSION: 16.17.1
@@ -49,6 +49,8 @@ jobs:
       - run: |
           touch .env
           echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_TEST_KEY }} >> .env
+          echo NUXT_MAILER_USER=${{ secrets.NUXT_MAILER_USER }} >> .env
+          echo NUXT_MAILER_PASS=${{ secrets.NUXT_MAILER_PASS }} >> .env
           echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
           echo APP_DOMAIN=https://avantage.fullstackjack.dev >> .env
           echo RELEASE_VERSION=${GITHUB_REF} >> .env

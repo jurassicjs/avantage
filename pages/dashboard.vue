@@ -28,7 +28,7 @@ function goToRegister() {
             The
             </template>
             <template v-slot:colorFullWord>
-             Dashbaord
+             Dashboard
              </template>
           </TheBillboard>
         </div>

@@ -1,7 +1,7 @@
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', '@nuxt/content', 'nuxt-icon'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', '@nuxt/content', 'nuxt-icon', 'nuxt-mailer'],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config.js',
@@ -24,10 +24,17 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
-    private: {
-      stripeSecretKey: process.env.STRIPE_SECRET_KEY,
-      db: process.env.DATABASE_URL
-    },
+    mailerUser: '',
+    mailerPass: '',
+    mailerLog: '',
+    mailerDriver: '',
+    mailerHost: '',
+    mailerPort: '',
+    mailerSmtpTls: '',
+    mailerFromAddress: '',
+    mailerToAddress: '',
+    stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+    db: process.env.DATABASE_URL,
     public: {
       appDomain: process.env.APP_DOMAIN,
       gitHash: process.env.GITHUB_SHA,

@@ -1,31 +1,43 @@
-import { IUser } from '~/types/IUser';
 import prisma from "~/server/database/client";
-import { ISession } from '~~/types/ISession';
+import { IUserSession } from '~~/types/ISession';
 import { User } from '@prisma/client';
 
-export async function createSession(sessionData: ISession): Promise<ISession> {
-  if (!sessionData.authToken) {
+export async function createSession(authToken: string, user: User): Promise<IUserSession> {
+  if (!authToken) {
     throw Error('missing auth token for session')
   }
   
-  return await prisma.session.create({
+ const session = await prisma.session.create({
     data: {
-      userId: sessionData.userId,
-      authToken: sessionData.authToken
+      userId: user.id,
+      authToken: authToken
     },
   })
+
+  return {user: user, authToken: authToken, sessionId: session.id}
 }
 
-export async function getSessionByAuthToken(authToken: string): Promise<ISession> {
-  const user: User = await getUserByAuthToken(authToken) as unknown as User
-
-  return { authToken, user }
-}
-
-async function getUserByAuthToken(authToken: string): Promise<User | null> {
-  return prisma.session.findUnique({
+async function getSessionByAuthToken(authToken: string) {
+  const session =  await prisma.session.findUnique({
     where: {
       authToken: authToken,
     }
+  })
+
+  return session
+}
+
+export async function getUserByAuthToken(authToken: string): Promise<User> {
+  const session = await getSessionByAuthToken(authToken)
+  const user =  await prisma.session.findUnique({
+    where: {
+      id: session?.id,
+    }
   }).user()
+
+  if(user === null) {
+    throw new Error(`no user found for authToken ${authToken}`)
+  }
+
+  return user
 }

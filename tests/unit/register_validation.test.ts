@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { getUserByUserName } from '~~/server/database/repositories/userRespository'
 import { validate } from '../../server/app/services/validator'
+import { validateRegistration } from '~/server/app/services/validator'
 
 
 describe('test email validation', async () => {
@@ -12,14 +13,13 @@ describe('test email validation', async () => {
     }
   })
 
-
   it('should return error if email missing', async () => {
     const res = await validate({
       username: '',
       name: '',
-      email: null,
+      email: undefined,
       password: '1234567'
-    })
+    }, validateRegistration)
 
     const emailVal = res.get('email')
 
@@ -34,7 +34,7 @@ describe('test email validation', async () => {
       name: '',
       email: 'test',
       password: '1234567'
-    })
+    }, validateRegistration)
 
     const emailVal = res.get('email')
 
@@ -51,7 +51,7 @@ describe('test email validation', async () => {
       name: '',
       email: email,
       password: '1234567'
-    })
+    }, validateRegistration)
 
     const emailVal = res.get('email')
 

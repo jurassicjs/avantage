@@ -1,18 +1,34 @@
 import { H3Event, sendError } from 'h3'
-import bcrypt from 'bcrypt'
 import { IUser } from '~/types/IUser';
-import { createUser } from '~/server/database/repositories/userRespository'
+import { updateUser } from '~/server/database/repositories/userRespository'
 import { ZodError } from "zod"
 import sendDefaultErrorResponse from '~~/server/app/errors/responses/DefaultErrorsResponse';
-import registerRequest from '~/server/app/formRequests/RegisterRequest';
 import { validateUser } from '~/server/app/services/userService';
 import { makeSession } from '~~/server/app/services/sessionService';
 import sendZodErrorResponse from '~~/server/app/errors/responses/ZodErrorsResponse';
-import sendVerificationEmail from '~~/server/app/email/verifyEmail';
+import { getSanitizedUserBySessionToken } from '~/server/app/services/sessionService'
+import { getMappedError } from '~~/server/app/errors/errorMapper';
+import updateUserRequest from '~~/server/app/formRequests/UpdateUserRequest';
+
+
+const standardAuthError = getMappedError('Authentication', 'Invalid Credentials')
 
 export default eventHandler(async (event: H3Event) => {
   try {
-    const data = await registerRequest(event)
+
+    const authToken = getCookie(event, 'auth_token')
+
+    if (!authToken) {
+      return null
+    }
+
+    const auth = await getSanitizedUserBySessionToken(authToken)
+
+    if(!auth) {
+      return sendError(event, createError({ statusCode: 401, data: standardAuthError }))
+    }
+
+    const data = await updateUserRequest(event)
     const validation = await validateUser(data)
 
     if (validation.hasErrors === true && validation.errors) {
@@ -20,19 +36,14 @@ export default eventHandler(async (event: H3Event) => {
       return sendError(event, createError({ statusCode: 422, data: errors }))
     }
 
-    const encryptedPassword: string = await bcrypt.hash(data.password, 10)
-
     const userData: IUser = {
       username: data.username,
       name: data.name,
       email: data.email,
       loginType: 'email',
-      password: encryptedPassword
     }
 
-    const user = await createUser(userData)
-
-    sendVerificationEmail(user.email as string, user.id)
+    const user = await updateUser(userData)
 
     return await makeSession(user, event)
   } catch (error: any) {

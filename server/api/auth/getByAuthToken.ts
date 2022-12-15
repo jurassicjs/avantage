@@ -1,5 +1,5 @@
 import { getCookie } from 'h3'
-import { getUserBySessionToken } from '~~/server/app/services/sessionService'
+import { getSanitizedUserBySessionToken } from '~~/server/app/services/sessionService'
 
 export default defineEventHandler(async (event) => {
   const authToken = getCookie(event, 'auth_token')  
@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     return null
   }
 
-  const user  = await getUserBySessionToken(authToken)
+  const user  = await getSanitizedUserBySessionToken(authToken)
 
   return user
 })
