@@ -1,7 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
-import { getUserByUserName } from '~~/server/database/repositories/userRespository'
 import { validate } from '../../server/app/services/validator'
-import { validateRegistration } from '~/server/app/services/validator'
+import { validateRegistration } from '../..//server/app/services/validator'
 
 
 describe('test email validation', async () => {
