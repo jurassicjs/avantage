@@ -1,14 +1,14 @@
 import { H3Event, sendError } from 'h3'
 import { IUser } from '~/types/IUser';
-import { updateUser } from '~~/server/database/repositories/userRepository'
+import { updateUser } from '~/server/database/repositories/userRepository'
 import { ZodError } from "zod"
 import sendDefaultErrorResponse from '~~/server/app/errors/responses/DefaultErrorsResponse';
 import { validateUser } from '~/server/app/services/userService';
-import { makeSession } from '~~/server/app/services/sessionService';
-import sendZodErrorResponse from '~~/server/app/errors/responses/ZodErrorsResponse';
+import { makeSession } from '~/server/app/services/sessionService';
+import sendZodErrorResponse from '~/server/app/errors/responses/ZodErrorsResponse';
 import { getSanitizedUserBySessionToken } from '~/server/app/services/sessionService'
-import { getMappedError } from '~~/server/app/errors/errorMapper';
-import updateUserRequest from '~~/server/app/formRequests/UpdateUserRequest';
+import { getMappedError } from '~/server/app/errors/errorMapper';
+import updateUserRequest from '~/server/app/formRequests/UpdateUserRequest';
 
 
 const standardAuthError = getMappedError('Authentication', 'Invalid Credentials')
