@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import { getUserByEmail } from '~/server/database/repositories/userRespository';
+import { getUserByEmail } from '~~/server/database/repositories/userRepository';
 import { sendError, H3Event } from "h3"
 import { ZodError } from "zod"
 import loginRequest from '~~/server/app/formRequests/LoginRequest';

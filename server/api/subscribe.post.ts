@@ -1,6 +1,6 @@
-import { getUserById } from "~/server/database/repositories/userRespository"
+import { getUserById } from "~~/server/database/repositories/userRepository"
 import { getSubscribeUrl } from "~/server/app/services/stripeService"
-import { updateStripeCustomerId } from "~/server/database/repositories/userRespository"
+import { updateStripeCustomerId } from "~~/server/database/repositories/userRepository"
 
 export default defineEventHandler(async (event) => {
  const body = await readBody(event)

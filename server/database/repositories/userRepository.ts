@@ -128,6 +128,15 @@ export async function createOrUpdateSubscription(data: ISubscription) {
   })
 }
 
+// get all user with unverified email
+export async function getUnverifiedUsers(): Promise<User[]> {
+  return await prisma.user.findMany({
+    where: {
+      isEmailVerified: false || null
+    }
+  })
+}
+
 export async function updateIsEmailVerified(userId: number, isVerified: boolean) {
   const user = await prisma.user.update({
     where: {

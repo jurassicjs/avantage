@@ -1,6 +1,6 @@
 import { H3Event, sendError } from 'h3'
 import { IUser } from '~/types/IUser';
-import { updateUser } from '~/server/database/repositories/userRespository'
+import { updateUser } from '~~/server/database/repositories/userRepository'
 import { ZodError } from "zod"
 import sendDefaultErrorResponse from '~~/server/app/errors/responses/DefaultErrorsResponse';
 import { validateUser } from '~/server/app/services/userService';

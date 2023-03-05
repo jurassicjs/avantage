@@ -1,7 +1,7 @@
 import { getSanitizedUserBySessionToken } from '~/server/app/services/sessionService'
 import { verifyOtp } from '~/server/app/services/otp'
 import verifyOtpRequest from '~/server/app/formRequests/VerifyOtpRequest'
-import { updateIsEmailVerified } from '~~/server/database/repositories/userRespository'
+import { updateIsEmailVerified } from '~~/server/database/repositories/userRepository'
 import { ZodError } from "zod"
 import sendZodErrorResponse from '~/server/app/errors/responses/ZodErrorsResponse';
 import sendDefaultErrorResponse from '~/server/app/errors/responses/DefaultErrorsResponse';

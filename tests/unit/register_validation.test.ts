@@ -5,7 +5,7 @@ import { validateRegistration } from '../..//server/app/services/validator'
 
 describe('test email validation', async () => {
 
-  vi.mock('~/server/database/repositories/userRespository', () => {
+  vi.mock('~/server/database/repositories/userRepository', () => {
     return {
       getUserByEmail: vi.fn(() => ({ email: 'test@fullstackjack.com' })),
       getUserByUserName: vi.fn(() => ({ email: 'test@fullstackjack.com' }))

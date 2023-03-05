@@ -1,5 +1,5 @@
 import { SubPostRes } from '~/types/SubPostRes';
-import { createOrUpdateSubscription, getSubscriptionById, getUserByStripeCustomerId} from "~/server/database/repositories/userRespository"
+import { createOrUpdateSubscription, getSubscriptionById, getUserByStripeCustomerId} from "~~/server/database/repositories/userRepository"
 import { IUser } from '~/types/IUser';
 import Stripe from 'stripe';
 import { ISubscription } from '~~/types/ISubscription';

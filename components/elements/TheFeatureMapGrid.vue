@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import  ColorModeLogo  from "~~/components/elements/Logos/colorMode.vue";
+import  NuxtSchedulerLogo  from "~~/components/elements/Logos/NuxtSchedulerLogo.vue";
 </script>
 
 <template>
@@ -157,6 +158,23 @@ import  ColorModeLogo  from "~~/components/elements/Logos/colorMode.vue";
           </div>
         </nuxt-link>
 
+        <!-- create nuxt-scheduler -->
+        <nuxt-link to="https://nuxtjs.org/">
+          <div class="mb-5">
+            <dt>
+              <div
+                class="absolute flex items-center justify-center h-12 w-12 p-1 text-white hover:text-black rounded-md bg-white dark:bg-slate-900 text-white bg-gradient-to-r hover:from-green-500 hover:to-teal-400 md:hover:scale-110">
+                <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                <NuxtSchedulerLogo/>
+              </div>
+              <p class="ml-16 text-lg leading-6 font-medium dark:text-white text-gray-900">Nuxt Scheduler</p>
+            </dt>
+            <dd class="mt-2 ml-16 text-base text-gray-500">
+              configured and ready to go
+            </dd>
+          </div>
+        </nuxt-link>
+        <!-- end nuxt-scheduler -->
 
       </dl>
     </div>

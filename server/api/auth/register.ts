@@ -1,7 +1,7 @@
 import { H3Event, sendError } from 'h3'
 import bcrypt from 'bcrypt'
 import { IUser } from '~/types/IUser';
-import { createUser } from '~/server/database/repositories/userRespository'
+import { createUser } from '~~/server/database/repositories/userRepository'
 import { ZodError } from "zod"
 import sendDefaultErrorResponse from '~~/server/app/errors/responses/DefaultErrorsResponse';
 import registerRequest from '~/server/app/formRequests/RegisterRequest';
