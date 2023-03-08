@@ -1,4 +1,4 @@
-import { getUserByEmail, getUserByUserName } from "~~/server/database/repositories/userRepository"
+import { getUserByEmail, getUserByUserName } from "~/server/database/repositories/userRepository"
 import { RegistrationRequest } from "~/types/IRegistration"
 
 
