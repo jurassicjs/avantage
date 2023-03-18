@@ -1,0 +1,4 @@
+<template>
+<TheSlider/>
+<Swiper/>
+</template>
