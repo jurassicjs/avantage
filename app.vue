@@ -8,13 +8,13 @@ nuxtApp.hook("page:finish", () => {
 })
 
 useHead({
-      meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
-      ],
-      bodyAttrs: {
-        class: 'dark:bg-black'
-      }
-    })
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
+  ],
+  bodyAttrs: {
+    class: 'dark:bg-black'
+  }
+})
 
 
 await useUser()
@@ -28,21 +28,24 @@ await useUser()
 </template>
 
 <style>
-.page{
-  overflow:hidden;
+.page {
+  overflow: hidden;
 }
-div#goog-gt-tt{
-  display:none;
-  }
+
+div#goog-gt-tt {
+  display: none;
+}
 
 body {
   background-color: #fff;
-  color: rgba(0,0,0,0.8);
+  color: rgba(0, 0, 0, 0.8);
 }
+
 .dark-mode body {
   background-color: #091a28 !important;
   color: #ebf4f1;
 }
+
 .sepia-mode body {
   background-color: #f1e7d0;
   color: #433422;

@@ -1,6 +1,6 @@
 import { H3Event, sendError } from 'h3'
 import bcrypt from 'bcrypt'
-import { IUser } from '~/types/IUser';
+import type { IUser } from '~/types/IUser';
 import { createUser } from '~~/server/database/repositories/userRepository'
 import { ZodError } from "zod"
 import sendDefaultErrorResponse from '~~/server/app/errors/responses/DefaultErrorsResponse';
@@ -32,7 +32,13 @@ export default eventHandler(async (event: H3Event) => {
 
     const user = await createUser(userData)
 
-    sendVerificationEmail(user.email as string, user.id)
+    console.log('Created user: ', user)
+
+    if (!user.id) {
+      throw Error('Error Creating User')
+    }
+
+    await sendVerificationEmail(user.email, user.id)
 
     return await makeSession(user, event)
   } catch (error: any) {

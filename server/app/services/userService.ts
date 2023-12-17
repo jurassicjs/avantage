@@ -1,12 +1,11 @@
-import { RegistrationRequest as RegistrationRequest } from '~~/types/IRegistration';
+import type { RegistrationRequest as RegistrationRequest } from '~~/types/IRegistration';
+import type { User } from '@prisma/client';
+import type { IUserSanitized } from '~~/types/IUser';
 import { H3Event } from 'h3';
 import { getSanitizedUserBySessionToken } from './sessionService';
-import { isString } from '@vueuse/core';
-import { IUserSanitized } from '~~/types/IUser';
 import { validate } from './validator';
 import { validateRegistration } from '~/server/app/services/validator'
-import { User } from '@prisma/client';
-import {getUnverifiedUsers} from '~/server/database/repositories/userRepository'
+import { getUnverifiedUsers } from '~/server/database/repositories/userRepository'
 import { sendReminderVerificationEmail } from '~~/server/app/email/verifyEmail';
 
 export async function validateUser(data: RegistrationRequest) {
@@ -36,7 +35,7 @@ export function sanitizeUserForFrontend(user: User): IUserSanitized {
 export async function authCheck(event: H3Event): Promise<boolean> {
 
     const authToken = getCookie(event, 'auth_token')
-    const hasAuthToken = isString(authToken)
+    const hasAuthToken = typeof authToken == 'string' && authToken.length > 0
 
     if (!hasAuthToken) {
         return false
@@ -52,13 +51,15 @@ export async function authCheck(event: H3Event): Promise<boolean> {
 }
 
 export async function remindUnverifiedUsers() {
-    const users =  await getUnverifiedUsers()
+    const users = await getUnverifiedUsers()
 
     console.log('Found ', users.length, ' unverified users')
-    users.forEach((user: User) => { 
+    users.forEach((user: User) => {
         // Send email to user
         console.log('Sending email to user: ', user.username, ' with email: ', user.email, ' and id: ', user.id, '')
-        if (user.email && user.id)
-        sendReminderVerificationEmail(user.email, user.id)
+        if (user.email && user.id) {
+            console.log('Sending email to user: ', user.username, ' with email: ', user.email, ' and id: ', user.id, '');
+            sendReminderVerificationEmail(user.email, user.id)
+        }
     })
 }

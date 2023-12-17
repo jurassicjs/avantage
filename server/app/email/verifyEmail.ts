@@ -6,7 +6,14 @@ import { createOtp } from '../services/otp'
 export default async function sendVerificationEmail(email: string, userId: number) {
   const otp = await createOtp(userId)
   const template = verifyEmailTemplate(otp, 'support@fullstackjack.dev', 'Avantage Support', 'Avantage')
-  sendGmail({ template, to: email, from: 'Rick', subject: 'Nuxt Mailer email verification' })
+
+  console.log('sendMail +++: ', email)
+  sendGmail({
+    template,
+    to: email,
+    from: 'Rick',
+    subject: 'Nuxt Mailer email verification'
+  })
 }
 
 export async function sendReminderVerificationEmail(email: string, userId: number) {

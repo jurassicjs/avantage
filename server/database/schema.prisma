@@ -15,9 +15,9 @@ model User {
   id               Int            @id @default(autoincrement())
   loginType        String?        @default("email")
   password         String?
-  email            String?        @unique
-  name             String?
-  username         String?        @unique
+  email            String        @unique
+  name             String
+  username         String        @unique
   session          Session[]
   stripeCustomerId String?
   isEmailVerified  Boolean?
